@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="VIP Select — wagering platform. Sign in or join to get started."
+    />
+    <title>Vip Select</title>
+    <link rel="icon" href="public/icons/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner">
+        <div class="site-header__brand">
+          <img
+            src="/public/icons/logo.svg"
+            alt="VIP Select Logo"
+            width="59"
+            height="59"
+          />
+          <p class="site-header__brand__text">Vip Select</p>
+        </div>
+
+        <button
+          class="site-header__menu-toggle"
+          type="button"
+          id="site-header-menu-toggle"
+          aria-expanded="false"
+          aria-controls="site-header-menu"
+          aria-label="Open menu"
+        >
+          <span class="site-header__toggle-icons" aria-hidden="true">
+            <img
+              class="site-header__toggle-img site-header__toggle-img--burger"
+              src="public/icons/burger.svg"
+              alt=""
+              width="18"
+              height="14"
+            />
+            <img
+              class="site-header__toggle-img site-header__toggle-img--close"
+              src="public/icons/close.svg"
+              alt=""
+              width="14"
+              height="14"
+              loading="lazy"
+            />
+          </span>
+        </button>
+
+        <div class="site-header__actions-wrapper">
+          <nav
+            id="site-header-menu"
+            class="site-header__actions"
+            aria-label="Main"
+          >
+            <div class="site-header__support">
+              <p class="site-header__support-label">Support Line</p>
+              <p class="site-header__support-phone">+1 000 000 0000</p>
+            </div>
+
+            <a class="btn btn--blue" href="/login">Login</a>
+            <a class="btn btn--outline" href="/join">Join</a>
+
+            <img
+              class="site-header__user-icon"
+              src="public/icons/user.svg"
+              alt="User Icon"
+              width="32"
+              height="32"
+              loading="lazy"
+            />
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__bg"
+          src="public/images/background/hero-1920.webp"
+          srcset="
+            public/images/background/hero-828.webp 828w,
+            public/images/background/hero-1280.webp 1280w,
+            public/images/background/hero-1920.webp 1920w
+          "
+          sizes="100vw"
+          width="1920"
+          height="933"
+          alt=""
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="hero__inner">
+          <div class="hero__content">
+            <div class="hero__badge">
+              <p class="hero__badge-text">
+                Built for speed, simplicity, and continuous play.
+              </p>
+            </div>
+            <div class="hero__copy">
+              <h1 class="hero__title" id="hero-title">
+                A higher level of access
+              </h1>
+              <p class="hero__subtitle">
+                Full access to sportsbook and casino, designed for a seamless
+                and uninterrupted playing experience.
+              </p>
+            </div>
+          </div>
+          <div class="hero__actions">
+            <a class="btn btn--blue" href="/login">Join VIP Select</a>
+            <a class="btn btn--outline" href="/join">Enter Platform</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="sportsbook" aria-labelledby="sportsbook-heading">
+        <div class="sportsbook__intro-wrap">
+          <h3 class="sportsbook__eyebrow">Sportsbook</h3>
+          <div class="sportsbook__intro">
+            <h2 class="sportsbook__title" id="sportsbook-heading">
+              Fast decisions. Clean execution
+            </h2>
+            <p class="sportsbook__lede">
+              Comprehensive coverage across major leagues and events, with
+              real-time markets and a clean interface built for fast
+              decision-making.
+            </p>
+          </div>
+        </div>
+        <div
+          class="sportsbook__grid"
+          id="sportsbook-feature-grid"
+          role="list"
+        ></div>
+      </section>
+
+      <section class="main__content">
+        <section class="casino" aria-labelledby="casino-heading">
+          <div class="casino__layout">
+            <img
+              class="casino__visual"
+              src="public/images/bitcoin-628.webp"
+              srcset="
+                public/images/bitcoin-628.webp 628w,
+                public/images/bitcoin-1256.webp 1256w
+              "
+              sizes="(min-width: 1280px) 628px, 100vw"
+              alt=""
+              width="628"
+              height="499"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="casino__content">
+              <h3 class="sportsbook__eyebrow">Casino</h3>
+              <div class="casino__intro">
+                <h2 class="sportsbook__title" id="casino-heading">
+                  Smooth across every session
+                </h2>
+                <p class="sportsbook__lede">
+                  A complete casino environment with smooth performance and
+                  consistent gameplay across all devices.
+                </p>
+              </div>
+              <div
+                class="casino__grid"
+                id="casino-feature-grid"
+                role="list"
+              ></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="platform-xp" aria-labelledby="platform-xp-heading">
+          <div class="platform-xp__panel">
+            <h3 class="sportsbook__eyebrow">Platform experience</h3>
+            <div class="casino__intro">
+              <h2 class="sportsbook__title" id="platform-xp-heading">
+                Built for Continuous Play
+              </h2>
+              <p class="sportsbook__lede">
+                VIP Select is designed to remove friction and keep the
+                experience flowing, allowing users to move between sportsbook
+                and casino without interruptions.
+              </p>
+            </div>
+            <div
+              class="platform-xp__grid"
+              id="platform-feature-grid"
+              role="list"
+            ></div>
+          </div>
+        </section>
+
+        <section class="how-it-works" aria-labelledby="how-it-works-heading">
+          <div class="how-it-works__inner">
+            <div class="how-it-works__header">
+              <h3 class="sportsbook__eyebrow">How it works?</h3>
+              <h2 class="sportsbook__title" id="how-it-works-heading">
+                Simple by Design
+              </h2>
+            </div>
+            <div
+              class="how-it-works__grid"
+              id="how-it-works-grid"
+              role="list"
+            ></div>
+          </div>
+        </section>
+
+        <section class="full-coverage" aria-labelledby="full-coverage-heading">
+          <div class="full-coverage__row">
+            <div class="full-coverage__panel">
+              <h2 class="sportsbook__title" id="full-coverage-heading">
+                Full Coverage
+              </h2>
+              <div class="full-coverage__columns">
+                <div class="full-coverage__column">
+                  <h3 class="full-coverage__subtitle">Sports</h3>
+                  <ul class="full-coverage__list" role="list">
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/football.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">NFL</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/basketball.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">NBA</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/soccer.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">Soccer</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/nhl.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">NHL</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/college-basketball.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">College Sports</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/cricket.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">Cricket</p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="full-coverage__column">
+                  <h3 class="full-coverage__subtitle">Casino</h3>
+                  <ul class="full-coverage__list" role="list">
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/live-video.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">Live Casino</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/cards-playing.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">Table Games</p>
+                    </li>
+                    <li class="full-coverage__item">
+                      <img
+                        class="full-coverage__icon"
+                        src="/public/icons/slots.svg"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <p class="full-coverage__item-text">Slots</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="full-coverage__promo">
+              <p class="full-coverage__promo-text">
+                Sportsbook and Casino in one structured environment
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="value-promo" aria-labelledby="value-promo-title">
+          <h2 class="value-promo__title" id="value-promo-title">
+            Consistent and Reliable
+          </h2>
+          <p class="value-promo__description">
+            A stable platform designed to support high activity, fast updates,
+            and a smooth experience across all wagering products.
+          </p>
+        </section>
+
+        <section class="sport-cta" aria-labelledby="sport-cta-title">
+          <img
+            class="sport-cta__bg"
+            src="public/images/background/sport.webp"
+            alt=""
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+          />
+          <div class="sport-cta__inner">
+            <h2 class="sport-cta__title" id="sport-cta-title">
+              Ready When You Are
+            </h2>
+            <a class="btn btn--blue" href="/join">Create Account</a>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__brand">
+        <img
+          src="/public/icons/logo.svg"
+          alt="VIP Select Logo"
+          width="59"
+          height="59"
+        />
+        <p class="site-footer__brand__text">Vip Select</p>
+      </div>
+
+      <p class="site-footer__copy">
+        © <span id="footer-year">2026</span> VIP SELECT. Wagering Platform.
+      </p>
+    </footer>
+    <script src="js/main.js" defer></script>
+  </body>
+</html>
