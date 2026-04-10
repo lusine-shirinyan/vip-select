@@ -67,6 +67,48 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+var SPORTSBOOK_GRID_MQ = window.matchMedia("(min-width: 768px)");
+var sportsbookEqualizeTimer = null;
+
+function equalizeSportsbookGridHeights() {
+  var grid = document.getElementById("sportsbook-feature-grid");
+  if (!grid) {
+    return;
+  }
+  var cards = grid.querySelectorAll(".sportsbook__card");
+  if (!cards.length) {
+    return;
+  }
+
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].style.minHeight = "";
+  }
+
+  if (!SPORTSBOOK_GRID_MQ.matches) {
+    return;
+  }
+
+  var maxH = 0;
+  for (var j = 0; j < cards.length; j++) {
+    var h = cards[j].getBoundingClientRect().height;
+    if (h > maxH) {
+      maxH = h;
+    }
+  }
+  if (maxH <= 0) {
+    return;
+  }
+  for (var k = 0; k < cards.length; k++) {
+    cards[k].style.minHeight = maxH + "px";
+  }
+}
+
+function scheduleEqualizeSportsbookGridHeights() {
+  requestAnimationFrame(function () {
+    requestAnimationFrame(equalizeSportsbookGridHeights);
+  });
+}
+
 function renderSportsbookFeatures() {
   var grid = document.getElementById("sportsbook-feature-grid");
   if (!grid) {
@@ -74,13 +116,14 @@ function renderSportsbookFeatures() {
   }
   grid.innerHTML = SPORTSBOOK_FEATURES.map(function (copy) {
     return (
-      '<article class="sportsbook__card" role="listitem">' +
+      '<div class="sportsbook__card" role="listitem">' +
       '<p class="sportsbook__card-text">' +
       escapeHtml(copy) +
       "</p>" +
-      "</article>"
+      "</div>"
     );
   }).join("");
+  scheduleEqualizeSportsbookGridHeights();
 }
 
 function renderCasinoFeatures() {
@@ -90,14 +133,14 @@ function renderCasinoFeatures() {
   }
   grid.innerHTML = CASINO_FEATURES.map(function (item) {
     return (
-      '<article class="casino__card" role="listitem">' +
+      '<div class="casino__card" role="listitem">' +
       '<img class="casino__card-icon" src="' +
       escapeHtml(item.icon) +
       '" alt="" width="40" height="40" />' +
       '<p class="casino__card-text">' +
       escapeHtml(item.text) +
       "</p>" +
-      "</article>"
+      "</div>"
     );
   }).join("");
 }
@@ -109,14 +152,14 @@ function renderPlatformFeatures() {
   }
   grid.innerHTML = PLATFORM_FEATURES.map(function (item) {
     return (
-      '<article class="platform-xp__card" role="listitem">' +
+      '<div class="platform-xp__card" role="listitem">' +
       '<img class="platform-xp__card-icon" src="' +
       escapeHtml(item.icon) +
       '" alt="" width="40" height="40" />' +
       '<p class="platform-xp__card-text">' +
       escapeHtml(item.text) +
       "</p>" +
-      "</article>"
+      "</div>"
     );
   }).join("");
 }
@@ -129,7 +172,7 @@ function renderHowItWorks() {
   grid.innerHTML = HOW_IT_WORKS_STEPS.map(function (item, index) {
     var label = "Step " + String(index + 1) + ": " + item.title;
     return (
-      '<article class="how-it-works__card" role="listitem" aria-label="' +
+      '<div class="how-it-works__card" role="listitem" aria-label="' +
       escapeHtml(label) +
       '">' +
       '<p class="how-it-works__step">' +
@@ -141,7 +184,7 @@ function renderHowItWorks() {
       '<p class="how-it-works__card-text">' +
       escapeHtml(item.description) +
       "</p>" +
-      "</article>"
+      "</div>"
     );
   }).join("");
 }
@@ -151,6 +194,31 @@ function initVipSelect() {
   renderCasinoFeatures();
   renderPlatformFeatures();
   renderHowItWorks();
+
+  function onSportsbookLayoutRefresh() {
+    clearTimeout(sportsbookEqualizeTimer);
+    sportsbookEqualizeTimer = setTimeout(
+      scheduleEqualizeSportsbookGridHeights,
+      50
+    );
+  }
+
+  window.addEventListener("resize", onSportsbookLayoutRefresh);
+  if (typeof SPORTSBOOK_GRID_MQ.addEventListener === "function") {
+    SPORTSBOOK_GRID_MQ.addEventListener("change", scheduleEqualizeSportsbookGridHeights);
+  } else if (typeof SPORTSBOOK_GRID_MQ.addListener === "function") {
+    SPORTSBOOK_GRID_MQ.addListener(scheduleEqualizeSportsbookGridHeights);
+  }
+
+  var sportsbookGrid = document.getElementById("sportsbook-feature-grid");
+  if (sportsbookGrid && typeof ResizeObserver !== "undefined") {
+    var ro = new ResizeObserver(onSportsbookLayoutRefresh);
+    ro.observe(sportsbookGrid);
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(scheduleEqualizeSportsbookGridHeights);
+  }
 
   var yearEl = document.getElementById("footer-year");
   if (yearEl) {
@@ -189,19 +257,27 @@ function initVipSelect() {
     }
   }
 
-  function closeIfDesktop() {
-    if (mq.matches) {
-      setOpen(false);
-    } else {
-      syncMenuInert();
+  var menuWrapper = menu.parentElement;
+
+  function resetMenuOnNavBreakpointChange() {
+    var w = menuWrapper;
+    if (w && !mq.matches) {
+      w.style.transition = "none";
+    }
+    setOpen(false);
+    if (w && !mq.matches) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          w.style.removeProperty("transition");
+        });
+      });
     }
   }
 
-  toggle.addEventListener("click", function () {
+  toggle.addEventListener("click", function (e) {
+    e.stopPropagation();
     setOpen(!header.classList.contains("site-header--menu-open"));
   });
-
-  var menuWrapper = menu.parentElement;
 
   document.addEventListener("click", function (e) {
     if (mq.matches || !header.classList.contains("site-header--menu-open")) {
@@ -217,12 +293,12 @@ function initVipSelect() {
   });
 
   if (typeof mq.addEventListener === "function") {
-    mq.addEventListener("change", closeIfDesktop);
+    mq.addEventListener("change", resetMenuOnNavBreakpointChange);
   } else if (typeof mq.addListener === "function") {
-    mq.addListener(closeIfDesktop);
+    mq.addListener(resetMenuOnNavBreakpointChange);
   }
 
-  closeIfDesktop();
+  resetMenuOnNavBreakpointChange();
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
