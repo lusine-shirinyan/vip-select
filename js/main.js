@@ -199,13 +199,16 @@ function initVipSelect() {
     clearTimeout(sportsbookEqualizeTimer);
     sportsbookEqualizeTimer = setTimeout(
       scheduleEqualizeSportsbookGridHeights,
-      50
+      50,
     );
   }
 
   window.addEventListener("resize", onSportsbookLayoutRefresh);
   if (typeof SPORTSBOOK_GRID_MQ.addEventListener === "function") {
-    SPORTSBOOK_GRID_MQ.addEventListener("change", scheduleEqualizeSportsbookGridHeights);
+    SPORTSBOOK_GRID_MQ.addEventListener(
+      "change",
+      scheduleEqualizeSportsbookGridHeights,
+    );
   } else if (typeof SPORTSBOOK_GRID_MQ.addListener === "function") {
     SPORTSBOOK_GRID_MQ.addListener(scheduleEqualizeSportsbookGridHeights);
   }
@@ -219,92 +222,6 @@ function initVipSelect() {
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(scheduleEqualizeSportsbookGridHeights);
   }
-
-  var yearEl = document.getElementById("footer-year");
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
-  }
-
-  var header = document.getElementById("site-header");
-  var toggle = document.getElementById("site-header-menu-toggle");
-  var menu = document.getElementById("site-header-menu");
-
-  if (!header || !toggle || !menu) {
-    return;
-  }
-
-  var mq = window.matchMedia("(min-width: 768px)");
-
-  function syncMenuInert() {
-    if (mq.matches) {
-      menu.removeAttribute("inert");
-    } else if (header.classList.contains("site-header--menu-open")) {
-      menu.removeAttribute("inert");
-    } else {
-      menu.setAttribute("inert", "");
-    }
-  }
-
-  function setOpen(open) {
-    header.classList.toggle("site-header--menu-open", open);
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    syncMenuInert();
-    if (!mq.matches) {
-      document.body.style.overflow = open ? "hidden" : "";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }
-
-  var menuWrapper = menu.parentElement;
-
-  function resetMenuOnNavBreakpointChange() {
-    var w = menuWrapper;
-    if (w && !mq.matches) {
-      w.style.transition = "none";
-    }
-    setOpen(false);
-    if (w && !mq.matches) {
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          w.style.removeProperty("transition");
-        });
-      });
-    }
-  }
-
-  toggle.addEventListener("click", function (e) {
-    e.stopPropagation();
-    setOpen(!header.classList.contains("site-header--menu-open"));
-  });
-
-  document.addEventListener("click", function (e) {
-    if (mq.matches || !header.classList.contains("site-header--menu-open")) {
-      return;
-    }
-    if (toggle.contains(e.target)) {
-      return;
-    }
-    if (menuWrapper && menuWrapper.contains(e.target)) {
-      return;
-    }
-    setOpen(false);
-  });
-
-  if (typeof mq.addEventListener === "function") {
-    mq.addEventListener("change", resetMenuOnNavBreakpointChange);
-  } else if (typeof mq.addListener === "function") {
-    mq.addListener(resetMenuOnNavBreakpointChange);
-  }
-
-  resetMenuOnNavBreakpointChange();
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      setOpen(false);
-    }
-  });
 }
 
 if (document.readyState === "loading") {

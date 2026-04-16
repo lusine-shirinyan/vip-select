@@ -8,82 +8,37 @@
       content="VIP Select — wagering platform. Sign in or join to get started."
     />
     <title>Vip Select</title>
+    <link
+      rel="preload"
+      as="image"
+      href="public/images/background/hero-1920.webp"
+      imagesrcset="
+        public/images/background/hero-828.webp 828w,
+        public/images/background/hero-1280.webp 1280w,
+        public/images/background/hero-1920.webp 1920w
+      "
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="icon" href="public/icons/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="css/style.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="css/style.css" />
+    </noscript>
   </head>
   <body>
-    <header class="site-header" id="site-header">
-      <div class="site-header__inner">
-        <div class="site-header__brand">
-          <img
-            src="/public/icons/logo.svg"
-            alt="VIP Select Logo"
-            width="59"
-            height="59"
-          />
-          <p class="site-header__brand__text">Vip Select</p>
-        </div>
-
-        <button
-          class="site-header__menu-toggle"
-          type="button"
-          id="site-header-menu-toggle"
-          aria-expanded="false"
-          aria-controls="site-header-menu"
-          aria-label="Open menu"
-        >
-          <span class="site-header__toggle-icons" aria-hidden="true">
-            <img
-              class="site-header__toggle-img site-header__toggle-img--burger"
-              src="public/icons/burger.svg"
-              alt=""
-              width="18"
-              height="14"
-            />
-            <img
-              class="site-header__toggle-img site-header__toggle-img--close"
-              src="public/icons/close.svg"
-              alt=""
-              width="14"
-              height="14"
-              loading="lazy"
-            />
-          </span>
-        </button>
-
-        <div class="site-header__actions-wrapper">
-          <nav
-            id="site-header-menu"
-            class="site-header__actions"
-            aria-label="Main"
-          >
-            <div class="site-header__support">
-              <p class="site-header__support-label">Support Line</p>
-              <p class="site-header__support-phone">+1 000 000 0000</p>
-            </div>
-
-            <a class="btn btn--blue" href="/login">Login</a>
-            <a class="btn btn--outline" href="/join">Join</a>
-
-            <img
-              class="site-header__user-icon"
-              src="public/icons/user.svg"
-              alt="User Icon"
-              width="32"
-              height="32"
-              loading="lazy"
-            />
-          </nav>
-        </div>
-      </div>
-    </header>
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <img
           class="hero__bg"
           src="public/images/background/hero-1920.webp"
           srcset="
-            public/images/background/hero-828.webp 828w,
+            public/images/background/hero-828.webp   828w,
             public/images/background/hero-1280.webp 1280w,
             public/images/background/hero-1920.webp 1920w
           "
@@ -92,7 +47,7 @@
           height="933"
           alt=""
           fetchpriority="high"
-          decoding="async"
+          decoding="sync"
         />
         <div class="hero__inner">
           <div class="hero__content">
@@ -112,8 +67,8 @@
             </div>
           </div>
           <div class="hero__actions">
-            <a class="btn btn--blue" href="/login">Join VIP Select</a>
-            <a class="btn btn--outline" href="/join">Enter Platform</a>
+            <a class="btn btn--blue" href="#">Join VIP Select</a>
+            <a class="btn btn--outline" href="#">Enter Platform</a>
           </div>
         </div>
       </section>
@@ -146,10 +101,12 @@
               class="casino__visual"
               src="public/images/bitcoin-628.webp"
               srcset="
-                public/images/bitcoin-628.webp 628w,
+                public/images/bitcoin-314.webp   314w,
+                public/images/bitcoin-480.webp   480w,
+                public/images/bitcoin-628.webp   628w,
                 public/images/bitcoin-1256.webp 1256w
               "
-              sizes="(min-width: 1280px) 628px, 100vw"
+              sizes="(min-width: 1280px) 628px, (min-width: 1024px) min(628px, calc(100vw - 160px)), (min-width: 640px) min(628px, calc(100vw - 80px)), min(628px, calc(100vw - 40px))"
               alt=""
               width="628"
               height="499"
@@ -373,27 +330,11 @@
             <h2 class="sport-cta__title" id="sport-cta-title">
               Ready When You Are
             </h2>
-            <a class="btn btn--blue" href="/join">Create Account</a>
+            <a class="btn btn--blue" href="#">Create Account</a>
           </div>
         </section>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="site-footer__brand">
-        <img
-          src="/public/icons/logo.svg"
-          alt="VIP Select Logo"
-          width="59"
-          height="59"
-        />
-        <p class="site-footer__brand__text">Vip Select</p>
-      </div>
-
-      <p class="site-footer__copy">
-        © <span id="footer-year">2026</span> VIP SELECT. Wagering Platform.
-      </p>
-    </footer>
     <script src="js/main.js" defer></script>
   </body>
 </html>
